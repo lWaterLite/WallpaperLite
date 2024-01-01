@@ -16,6 +16,8 @@
 }
 
 .clock-block #time {
+  margin-top: 6px;
+  margin-bottom: 6px;
   font-size: 96px;
   font-family: Digital7, sans-serif;
 }

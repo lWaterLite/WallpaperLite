@@ -1,3 +1,6 @@
+import aphorismJson from "../assets/data/aphorism.json" assert {type: "json"};
+
+
 const aphorismBlock = document.getElementById("aphorism-text");
 const dateBlock = document.getElementById("date");
 const timeBlock = document.getElementById("time");
@@ -34,10 +37,51 @@ function updateClock(clock) {
   timeBlock.textContent = time_string;
 }
 
+function getRandomAphorismObject(aphorismHtmlElement) {
+  let randomAphorism = aphorismJson.aphorism[Math.floor(Math.random() * aphorismJson.aphorism.length)];
+  while (randomAphorism === aphorismHtmlElement.textContent) {
+    randomAphorism = aphorismJson.aphorism[Math.floor(Math.random() * aphorismJson.aphorism.length)];
+  }
+
+  if (typeof randomAphorism === "string"){
+    const matches = randomAphorism.match(/\n/g);
+    const lineCount = matches ? matches.length+1 : 1;
+    let fontSize = 32 - lineCount * 4;
+    if (fontSize <= 0) {
+      return {
+        fontSize: 28,
+        text: "Oops, motto go wrong.\n-developer lWaterLite"
+      }
+    }
+    return {
+      text: randomAphorism,
+      fontSize: fontSize
+    }
+  }
+  else if (typeof randomAphorism === "object"){
+    if ('fontSize' in randomAphorism && 'text' in randomAphorism) return randomAphorism
+    else return {
+      fontSize: 28,
+      text: "Oops, motto go wrong.\n-developer lWaterLite"
+    }
+  }
+  else return {
+      fontSize: 28,
+      text: "Oops, motto go wrong.\n-developer lWaterLite"
+    }
+}
+
+function updateAphorism(aphorismHtmlElement, aphorismObject) {
+  aphorismHtmlElement.textContent = aphorismObject.text;
+  aphorismHtmlElement.style.fontSize = `${aphorismObject.fontSize}px`;
+}
+
 function onMounted() {
+  let randomAphorismObject = getRandomAphorismObject(aphorismBlock);
   let clock = new Clock();
   updateClock(clock)
-  aphorismBlock.textContent = "有死而荣，无生而辱。\n-《只狼：影逝二度》"
+  updateAphorism(aphorismBlock, randomAphorismObject);
+
   setInterval(() => {
     updateClock(clock);
   }, 1000)
