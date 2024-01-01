@@ -1,0 +1,25 @@
+.clock-block {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@font-face {
+  font-family: "Digital7";
+  src: url("../assets/fonts/digital-7-4.ttf");
+}
+
+.clock-block #date {
+  font-size: 24px;
+}
+
+.clock-block #time {
+  font-size: 96px;
+  font-family: Digital7, sans-serif;
+}
+
+.clock-block #meta {
+  font-size: 24px;
+}

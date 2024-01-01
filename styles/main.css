@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.background-image {
+  background-image: url("/assets/images/background-0.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.background-color {
+  background-color: #202020;
+}
+
+.content-block-dark-mode {
+  color: white;
+  background-color: #2e2e2e;
+}
+
+.content-block {
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #5a5a5a;
+  border-width: 2px;
+}
+
+.text-global {
+  font-family: "Microsoft YaHei", serif;
+}
+
+.row-0 {
+  margin: 32px 32px 12px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 32px;
+}

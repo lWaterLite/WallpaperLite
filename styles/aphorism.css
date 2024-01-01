@@ -1,0 +1,44 @@
+.aphorism-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.quoter {
+  height: 32px;
+  width: 32px;
+}
+
+.quoter img {
+  height: 32px;
+  width: 32px;
+}
+
+.left-quoter {
+  height: 32px;
+  width: 32px;
+  margin-top: 12px;
+  margin-left: 12px;
+  align-self: flex-start;
+}
+
+.left-quoter img {
+  height: 32px;
+  width: 32px;
+}
+
+.right-quoter {
+  height: 32px;
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin-bottom: 12px;
+  margin-right: 12px;
+}
+
+.aphorism-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-wrap;
+  font-size: 28px;
+  flex-grow: 1;
+}
