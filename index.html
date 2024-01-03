@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css">
   <link rel="stylesheet" type="text/css" href="styles/iconfont.css">
 </head>
-<body class="background-color text-global">
+<body class="background-image text-global">
 <div class="row-0">
   <!--    aphorism block    -->
   <div class="aphorism-block content-block content-block-dark-mode">
@@ -46,19 +46,23 @@
     <template id="todo-item-template">
       <div class="todo-item">
 
-        <div class="todo-text" style="display: block">This is a todo item. But WELL IT IS TOO LONG TO SHOW.</div>
+        <div class="todo-text" style="display: block">This is a todo item.</div>
+        <!--suppress HtmlFormInputWithoutLabel -->
         <input class="todo-input" style="display: none">
         <div class="todo-icon todo-edit" style="display: block">
           <i class="iconfont">&#xe86d;</i>
         </div>
         <div class="todo-icon todo-check" style="display: none">
-          <i class="iconfont">&#xe7fc;</i>
+          <i class="iconfont">&#xe844;</i>
         </div>
         <div class="todo-icon todo-delete">
-          <i class="iconfont">&#xe7fd;</i>
+          <i class="iconfont">&#xe846;</i>
         </div>
       </div>
     </template>
+    <div class="todo-append">
+      <i class="iconfont">&#xe845;</i>
+    </div>
   </div>
 </div>
 

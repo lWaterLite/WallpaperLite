@@ -1,5 +1,4 @@
 import aphorismJson from "../assets/data/aphorism.json" assert {type: "json"};
-import todoJson from "../assets/data/todo.json" assert {type: "json"};
 
 const aphorismBlock = document.getElementById("aphorism-text");
 const dateBlock = document.getElementById("date");
@@ -16,7 +15,7 @@ class Clock {
     this.minute = time.getMinutes();
     this.second = time.getSeconds();
     this.day = time.getDay();
-    this.month = time.getMonth()+1;
+    this.month = time.getMonth() + 1;
     this.year = time.getFullYear();
     this.weekday = en_week_days_name[this.day]
   }
@@ -43,9 +42,9 @@ function getRandomAphorismObject(aphorismHtmlElement) {
     randomAphorism = aphorismJson.aphorism[Math.floor(Math.random() * aphorismJson.aphorism.length)];
   }
 
-  if (typeof randomAphorism === "string"){
+  if (typeof randomAphorism === "string") {
     const matches = randomAphorism.match(/\n/g);
-    const lineCount = matches ? matches.length+1 : 1;
+    const lineCount = matches ? matches.length + 1 : 1;
     let fontSize = 32 - lineCount * 4;
     if (fontSize <= 0) {
       return {
@@ -57,18 +56,16 @@ function getRandomAphorismObject(aphorismHtmlElement) {
       text: randomAphorism,
       fontSize: fontSize
     }
-  }
-  else if (typeof randomAphorism === "object"){
+  } else if (typeof randomAphorism === "object") {
     if ('fontSize' in randomAphorism && 'text' in randomAphorism) return randomAphorism
     else return {
       fontSize: 28,
       text: "Oops, motto go wrong.\n-developer lWaterLite"
     }
+  } else return {
+    fontSize: 28,
+    text: "Oops, motto go wrong.\n-developer lWaterLite"
   }
-  else return {
-      fontSize: 28,
-      text: "Oops, motto go wrong.\n-developer lWaterLite"
-    }
 }
 
 function updateAphorism(aphorismHtmlElement, aphorismObject) {
@@ -77,17 +74,14 @@ function updateAphorism(aphorismHtmlElement, aphorismObject) {
 }
 
 function initTodoList() {
-  let todoList = todoJson.todo;
   const todoBlock = document.getElementById("todo-block");
+  todoBlock.getElementsByClassName("todo-append")[0].addEventListener("click", todoAppendClickEventHandler);
   let todoTemplate = document.getElementById("todo-item-template").content;
-  for (let i = 0; i < todoList.length; i++) {
-    let todoItem = document.importNode(todoTemplate, true);
-    todoItem.querySelector(".todo-text").textContent = todoList[i];
-    for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
-      elementsByClassNameElement.addEventListener('click', todoIconClickEventHandler);
-    }
-    todoBlock.appendChild(todoItem);
+  let todoItem = document.importNode(todoTemplate, true);
+  for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
+    elementsByClassNameElement.addEventListener('click', todoIconClickEventHandler);
   }
+  todoBlock.appendChild(todoItem);
 }
 
 function todoIconClickEventHandler(event) {
@@ -98,21 +92,26 @@ function todoIconClickEventHandler(event) {
     ele.parentElement.getElementsByClassName('todo-text')[0].style.display = "none";
     ele.parentElement.getElementsByClassName('todo-input')[0].value = ele.parentElement.getElementsByClassName('todo-text')[0].textContent;
     ele.parentElement.getElementsByClassName('todo-input')[0].style.display = "block"
-  }
-  else if (ele.classList.contains("todo-check")) {
+  } else if (ele.classList.contains("todo-check")) {
     ele.style.display = "none";
     ele.parentElement.getElementsByClassName('todo-edit')[0].style.display = "block";
     ele.parentElement.getElementsByClassName('todo-input')[0].style.display = "none";
     ele.parentElement.getElementsByClassName('todo-text')[0].textContent = ele.parentElement.getElementsByClassName('todo-input')[0].value;
     ele.parentElement.getElementsByClassName('todo-text')[0].style.display = "block"
+  } else if (ele.classList.contains("todo-delete")) {
+    ele.parentElement.remove();
   }
 }
 
-// function todoCheckClickEventHandler(event) {
-//   let ele = event.currentTarget;
-//   ele.style.display = "none";
-//   ele.pa
-// }
+function todoAppendClickEventHandler(event) {
+  let todoBlock = event.currentTarget.parentElement;
+  let todoTemplate = document.getElementById("todo-item-template").content;
+  let todoItem = document.importNode(todoTemplate, true);
+  for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
+    elementsByClassNameElement.addEventListener('click', todoIconClickEventHandler);
+  }
+  todoBlock.appendChild(todoItem);
+}
 
 function onMounted() {
   let randomAphorismObject = getRandomAphorismObject(aphorismBlock);

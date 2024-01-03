@@ -10,12 +10,33 @@ body {
   height: 100vh;
 }
 
-.background-image {
+.background-image::after {
+  display: block;
   background-image: url("/assets/images/background-0.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
 }
+
+/*.background-image::before {*/
+/*  content: "";*/
+/*  display: block;*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  z-index: -1;*/
+/*  background-image: url('/assets/images/background-0.png');*/
+/*  opacity: 0.5; !* 设置透明度，取值范围为0到1 *!*/
+/*}*/
 
 .background-color {
   background-color: #202020;
@@ -169,6 +190,9 @@ body {
 }
 
 .todo-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 20%;
   height: 100%;
   margin-right: 32px;
@@ -241,3 +265,22 @@ body {
   border: white 1px solid;
   border-radius: 4px;
 }
+
+.todo-append {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: aquamarine;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.todo-append:hover {
+  background-color: #202020;
+}
+
