@@ -1,6 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .background-image {
@@ -31,8 +38,206 @@
 }
 
 .row-0 {
-  margin: 32px 32px 12px 32px;
+  margin: 32px 32px 32px 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 32px;
+}
+
+.aphorism-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.quoter {
+  height: 32px;
+  width: 32px;
+}
+
+.quoter img {
+  height: 32px;
+  width: 32px;
+}
+
+.left-quoter {
+  height: 32px;
+  width: 32px;
+  margin-top: 8px;
+  margin-left: 8px;
+  align-self: flex-start;
+}
+
+.left-quoter img {
+  height: 32px;
+  width: 32px;
+}
+
+.right-quoter {
+  height: 32px;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.aphorism-text {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  white-space: pre-wrap;
+  font-size: 28px;
+  flex-grow: 1;
+}
+
+.clock-block {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@font-face {
+  font-family: "Digital7";
+  src: url("../assets/fonts/digital-7-4.ttf");
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url("../assets/fonts/iconfont.ttf");
+}
+
+.clock-block #date {
+  font-size: 24px;
+}
+
+.clock-block #time {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 96px;
+  font-family: Digital7, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.clock-block #meta {
+  font-size: 24px;
+}
+
+.avatar-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.avatar-block .avatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 64px;
+  border: #5a5a5a solid 4px;
+}
+
+.avatar-block .avatar img {
+  height: 120px;
+  width: 120px;
+  border-radius: 64px;
+}
+
+@keyframes avatarRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-block .avatar img:hover {
+  animation: avatarRotate 2s linear infinite;
+}
+
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-bottom: 32px ;
+}
+
+.todo-block {
+  width: 20%;
+  height: 100%;
+  margin-right: 32px;
+}
+
+.todo-title {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.todo-item {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: auto;
+  align-self: center;
+  text-align: center;
+}
+
+.todo-item:hover {
+  background-color: #202020;
+}
+
+.todo-icon {
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.todo-icon:hover {
+  background-color: #5a5a5a;
+}
+
+.todo-edit, .todo-check {
+  color: aquamarine;
+}
+
+.todo-delete {
+  color: red;
+}
+
+.todo-input {
+  outline: none;
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #5a5a5a;
+  margin-right: 4px;
+  flex-grow: 1;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  padding-left: 4px;
+}
+
+.todo-input:focus {
+  border: white 1px solid;
+  border-radius: 4px;
 }

@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>WallpaperLite</title>
   <link rel="stylesheet" type="text/css" href="styles/main.css">
-  <link rel="stylesheet" type="text/css" href="styles/aphorism.css">
-  <link rel="stylesheet" type="text/css" href="styles/clock.css">
+  <link rel="stylesheet" type="text/css" href="styles/iconfont.css">
 </head>
 <body class="background-color text-global">
 <div class="row-0">
@@ -26,7 +25,43 @@
     <div id="meta">师大路 多云</div>
   </div>
 
+  <div class="avatar-block content-block content-block-dark-mode">
+    <div class="avatar">
+      <img src="assets/images/avatar-0.png" alt="avatar">
+    </div>
+    <div class="avatar">
+      <img src="assets/images/avatar-1.png" alt="avatar">
+    </div>
+    <div class="avatar">
+      <img src="assets/images/avatar-2.png" alt="avatar">
+    </div>
+  </div>
+
 </div>
+
+<div class="row-1">
+
+  <div class="todo-block content-block content-block-dark-mode" id="todo-block">
+    <div class="todo-title">Todo</div>
+    <template id="todo-item-template">
+      <div class="todo-item">
+
+        <div class="todo-text" style="display: block">This is a todo item. But WELL IT IS TOO LONG TO SHOW.</div>
+        <input class="todo-input" style="display: none">
+        <div class="todo-icon todo-edit" style="display: block">
+          <i class="iconfont">&#xe86d;</i>
+        </div>
+        <div class="todo-icon todo-check" style="display: none">
+          <i class="iconfont">&#xe7fc;</i>
+        </div>
+        <div class="todo-icon todo-delete">
+          <i class="iconfont">&#xe7fd;</i>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>
+
 </body>
 <script type="module" src="scripts/main.js"></script>
 </html>

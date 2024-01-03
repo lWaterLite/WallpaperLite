@@ -1,10 +1,10 @@
 import aphorismJson from "../assets/data/aphorism.json" assert {type: "json"};
-
+import todoJson from "../assets/data/todo.json" assert {type: "json"};
 
 const aphorismBlock = document.getElementById("aphorism-text");
 const dateBlock = document.getElementById("date");
 const timeBlock = document.getElementById("time");
-const metaBlock = document.getElementById("meta");
+// const metaBlock = document.getElementById("meta");
 
 const en_week_days_name = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -76,11 +76,50 @@ function updateAphorism(aphorismHtmlElement, aphorismObject) {
   aphorismHtmlElement.style.fontSize = `${aphorismObject.fontSize}px`;
 }
 
+function initTodoList() {
+  let todoList = todoJson.todo;
+  const todoBlock = document.getElementById("todo-block");
+  let todoTemplate = document.getElementById("todo-item-template").content;
+  for (let i = 0; i < todoList.length; i++) {
+    let todoItem = document.importNode(todoTemplate, true);
+    todoItem.querySelector(".todo-text").textContent = todoList[i];
+    for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
+      elementsByClassNameElement.addEventListener('click', todoIconClickEventHandler);
+    }
+    todoBlock.appendChild(todoItem);
+  }
+}
+
+function todoIconClickEventHandler(event) {
+  let ele = event.currentTarget;
+  if (ele.classList.contains("todo-edit")) {
+    ele.style.display = "none";
+    ele.parentElement.getElementsByClassName('todo-check')[0].style.display = "block"
+    ele.parentElement.getElementsByClassName('todo-text')[0].style.display = "none";
+    ele.parentElement.getElementsByClassName('todo-input')[0].value = ele.parentElement.getElementsByClassName('todo-text')[0].textContent;
+    ele.parentElement.getElementsByClassName('todo-input')[0].style.display = "block"
+  }
+  else if (ele.classList.contains("todo-check")) {
+    ele.style.display = "none";
+    ele.parentElement.getElementsByClassName('todo-edit')[0].style.display = "block";
+    ele.parentElement.getElementsByClassName('todo-input')[0].style.display = "none";
+    ele.parentElement.getElementsByClassName('todo-text')[0].textContent = ele.parentElement.getElementsByClassName('todo-input')[0].value;
+    ele.parentElement.getElementsByClassName('todo-text')[0].style.display = "block"
+  }
+}
+
+// function todoCheckClickEventHandler(event) {
+//   let ele = event.currentTarget;
+//   ele.style.display = "none";
+//   ele.pa
+// }
+
 function onMounted() {
   let randomAphorismObject = getRandomAphorismObject(aphorismBlock);
   let clock = new Clock();
   updateClock(clock)
   updateAphorism(aphorismBlock, randomAphorismObject);
+  initTodoList();
 
   setInterval(() => {
     updateClock(clock);
