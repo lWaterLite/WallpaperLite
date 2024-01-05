@@ -74,8 +74,8 @@ function updateAphorism(aphorismHtmlElement, aphorismObject) {
 }
 
 function initTodoList() {
-  const todoBlock = document.getElementById("todo-block");
-  todoBlock.getElementsByClassName("todo-append")[0].addEventListener("click", todoAppendClickEventHandler);
+  const todoBlock = document.getElementById("todo-list");
+  todoBlock.parentElement.getElementsByClassName("todo-append")[0].addEventListener("click", todoAppendClickEventHandler);
   let todoTemplate = document.getElementById("todo-item-template").content;
   let todoItem = document.importNode(todoTemplate, true);
   for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
@@ -104,7 +104,7 @@ function todoIconClickEventHandler(event) {
 }
 
 function todoAppendClickEventHandler(event) {
-  let todoBlock = event.currentTarget.parentElement;
+  let todoBlock = document.getElementById("todo-list");
   let todoTemplate = document.getElementById("todo-item-template").content;
   let todoItem = document.importNode(todoTemplate, true);
   for (const elementsByClassNameElement of todoItem.querySelectorAll('.todo-icon')) {
